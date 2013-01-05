@@ -5,13 +5,13 @@
 
     "description": "Multi-purpose word lookup addon",
     "icons": {
-        "16": "images/icon16.ico",
-        "48": "images/icon48.ico",
-        "128": "images/icon128.ico"
+        "16": "resources/images/icon16.ico",
+        "48": "resources/images/icon48.ico",
+        "128": "resources/images/icon128.ico"
     },
 
     "browser_action": {
-        "default_icon": {"19": "images/icon19.png"},
+        "default_icon": {"19": "resources/images/icon19.png"},
         "default_title": "Check it!",
         "default_popup": "html/popup.html"
     },
