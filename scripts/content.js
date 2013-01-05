@@ -11,8 +11,7 @@ var keyDownCode = -1;
  */
 var IGNORING_KEYCODES = [16,36,35,33,34,37,38,39,40];
 
-var tooltipNode = createTooltip();
-tooltipNode.appendTo("body");
+var tooltipNode = null;
 
 /**
  * response: a response object from background.js
@@ -24,10 +23,22 @@ function handleSelection(response) {
     if ( action == "preview" ) {
         var preview = response.preview;
         console.log(response.preview);
-        tooltipNode.find(".ct_title").text(preview.title);
-        tooltipNode.find(".ct_desc").html(preview.desc);
-        tooltipNode.find(".ct_more").html(
-                "<a href='" + preview.moreurl + "'>more...</a>");
+        var tooltip = getTooltip();
+        tooltip.find(".ct_title").text(preview.title);
+        tooltip.find(".ct_desc").html(preview.desc);
+        tooltip.find(".ct_more").html(
+                "<a target='_blank' href='" + preview.moreurl + "'>more...</a>");
+        tooltip.appendTo("html");
+        var xy = calTooltipXY();
+        tooltip.css("left",xy[0]+"px");
+        tooltip.css("top",xy[1]+"px");
+    }
+
+    function calTooltipXY() {
+        var clientRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+        if ( clientRect ) {
+            return [clientRect.left, clientRect.bottom+2];
+        }
     }
 }
 chrome.extension.onMessage.addListener(
@@ -72,6 +83,11 @@ function createTooltip() {
         "</div>"
     );
     return tooltip;
+}
+
+function getTooltip () {
+    if ( ! tooltipNode ) tooltipNode = createTooltip();
+    return tooltipNode;
 }
 
 function arrayContains(a, obj) {
