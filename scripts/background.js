@@ -56,9 +56,21 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, tabid) {
 }
 
 function ydictPreviewParser(html) {
-    var title = ($(html).find(".title_term").first().find(".yschttl").text());
-    // I'm not familiar with jQuery, let me slack a bit
-    var desc = "omgomgomg";
+    var firsthit = $(html).find(".result_cluster_first").first();
+
+    var title = firsthit.find(".title_term").find(".yschttl").text();
+    var desc = "";
+
+    // Right now I only pick explanations from the first POS
+    var pos = firsthit.find(".explanation_group_hd").first().text();
+    desc += "<div class='pos'>" + pos + "</div>";
+
+    var expls = firsthit.find(".explanation_ol").first().find(".explanation");
+    desc += "<ol class='exp'>";
+    expls.each( function() {
+        desc += "<li>" + $(this).text() + "</li>";
+    });
+    desc += "</ol>";
 
     return {"title": title, "desc": desc};
 }
