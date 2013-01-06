@@ -25,7 +25,7 @@ function handleSelection(response) {
         tooltip.find(".ct_title").text(preview.title);
         tooltip.find(".ct_desc").html(preview.desc);
         tooltip.find(".ct_more").html(
-                "<a target='_blank' href='" + preview.moreurl + "'>more...</a>");
+                "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>");
         tooltip.appendTo("html");
         var xy = calTooltipXY();
         tooltip.css("left",xy[0]+"px");

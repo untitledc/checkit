@@ -43,6 +43,7 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, tabid) {
                 case "dict.s.y.c":
                     previewParams = ydictPreviewParser(html);
                     previewParams.moreurl = backendUrl;
+                    previewParams.moretxt = "詳細解釋..."; //XXX i18n
                     chrome.tabs.sendMessage(tabid,
                             {"action":action, "preview":previewParams});
                     break;
