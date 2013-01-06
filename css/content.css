@@ -14,6 +14,28 @@
     line-height: normal;
 }
 
+.checkit_tooltip * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    color: #000000;
+    line-height: normal;
+}
+
+.checkit_tooltip .ct_desc ol {
+    list-style: list-item;
+}
+.checkit_tooltip .ct_desc ul {
+    list-style: list-item;
+}
+.checkit_tooltip .ct_desc li {
+    margin-left: 1.5em;
+}
+
 .checkit_tooltip .ct_title {
     font-size: 120%;
     font-weight: bold;
@@ -22,6 +44,14 @@
 
 .checkit_tooltip .ct_more {
     float: right;
+}
+.checkit_tooltip .ct_more a {
+    color: #215DA9;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.checkit_tooltip .ct_more a:visited {
+    color: #215DA9;
 }
 
 .checkit_tooltip .ct_close {
