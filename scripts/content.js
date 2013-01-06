@@ -18,11 +18,9 @@ var tooltipNode = null;
  *     containing what to do in this (chrome) tab
  */
 function handleSelection(response) {
-    console.log(response);
     var action = response.action;
     if ( action == "preview" ) {
         var preview = response.preview;
-        console.log(response.preview);
         var tooltip = getTooltip();
         tooltip.find(".ct_title").text(preview.title);
         tooltip.find(".ct_desc").html(preview.desc);
@@ -82,6 +80,9 @@ function createTooltip() {
         "  <div class='ct_more'>more</div>\n" +
         "</div>"
     );
+    tooltip.find(".ct_close").on("click",function(e){
+        $(this).parents(".checkit_tooltip").detach();
+    });
     return tooltip;
 }
 
