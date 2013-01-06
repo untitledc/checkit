@@ -35,7 +35,9 @@ function handleSelection(response) {
     function calTooltipXY() {
         var clientRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
         if ( clientRect ) {
-            return [clientRect.left, clientRect.bottom+2];
+            var x = clientRect.left+window.pageXOffset;
+            var y = clientRect.bottom+window.pageYOffset+2;
+            return [x,y];
         }
     }
 }
