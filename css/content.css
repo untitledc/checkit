@@ -7,11 +7,15 @@
     background: #FCFCDA;
     text-align: left;
     padding: 5px;
+    margin: 0;
     font-family: arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: normal;
 }
 
 .checkit_tooltip .ct_title {
-    font-size: 120%;
+    font-size: 115%;
     font-weight: bold;
     line-height: 1.5;
 }
