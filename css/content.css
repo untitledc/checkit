@@ -15,11 +15,20 @@
 }
 
 .checkit_tooltip .ct_title {
-    font-size: 115%;
+    font-size: 120%;
     font-weight: bold;
-    line-height: 1.5;
+    margin-bottom: 2px;
 }
 
 .checkit_tooltip .ct_more {
     float: right;
+}
+
+.checkit_tooltip .ct_close {
+    width: 13px;
+    height: 13px;
+    float: right;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAIAAAD9iXMrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAABmSURBVChTY/j///+Nh6/3n7m6dvcJTAQUB8oC1TAAKawqkAWBahhwmYSsDqiGAc4HGg4EuLjo6iBKIXqQtSHUwaV//fmDpggohaIOyIcoApJoniPdPGQ34XMfAf8SG37ExgeR8QsAopaUVS/4neAAAAAASUVORK5CYII=);
 }
