@@ -2,7 +2,7 @@
     display: inline-block;
     position: absolute;
     width: 250px;
-    z-index: 5;
+    z-index: 9000;
     border: 1px solid #D8BA57;
     background: #FCFCDA;
     text-align: left;
