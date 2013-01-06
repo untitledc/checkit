@@ -22,10 +22,12 @@ function handleSelection(response) {
     if ( action == "preview" ) {
         var preview = response.preview;
         var tooltip = getTooltip();
-        tooltip.find(".ct_title").text(preview.title);
-        tooltip.find(".ct_desc").html(preview.desc);
+        tooltip.find(".ct_title").text(
+                (preview.title)? preview.title : "");
+        tooltip.find(".ct_desc").html(
+                (preview.desc)? preview.desc : "");
         tooltip.find(".ct_more").html(
-                "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>");
+                (preview.moreurl)? "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>": "");
         tooltip.appendTo("html");
         var xy = calTooltipXY();
         tooltip.css("left",xy[0]+"px");
@@ -77,9 +79,9 @@ function createTooltip() {
     var tooltip = $(
         "<div class='checkit_tooltip'>\n" +
         "  <div class='ct_close'/>\n" +
-        "  <div class='ct_title'>Title</div>\n" +
-        "  <div class='ct_desc'>content</div>\n" +
-        "  <div class='ct_more'>more</div>\n" +
+        "  <div class='ct_title'></div>\n" +
+        "  <div class='ct_desc'></div>\n" +
+        "  <div class='ct_more'></div>\n" +
         "</div>"
     );
     tooltip.find(".ct_close").on("click",function(e){
