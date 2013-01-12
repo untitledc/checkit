@@ -1,4 +1,8 @@
 /**
+ * Whether select&check is on or not
+ */
+var isSelectCheckOn = true;
+/**
  * keyCode of current pressed key
  */
 var keyDownCode = -1;
@@ -10,8 +14,14 @@ var keyDownCode = -1;
  * SHIFT,HOME,END,PAGEUP,PAGEDOWN,4 arrow keys
  */
 var IGNORING_KEYCODES = [16,36,35,33,34,37,38,39,40];
-
+/**
+ * The DOM of tooltip when some texts are selected.
+ */
 var tooltipNode = null;
+
+var init = function() {
+    // load storage here to init isSelectCheckOn I guess
+}();
 
 /**
  * response: a response object from background.js
@@ -50,7 +60,7 @@ chrome.extension.onMessage.addListener(
 );
 
 window.onmouseup = function(e) {
-    if ( keyDownCode == 67 ) {
+    if ( isSelectCheckOn && keyDownCode == 67 ) {
         var str = window.getSelection().toString();
         if ( str ) {
             chrome.extension.sendMessage({
