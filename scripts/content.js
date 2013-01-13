@@ -23,32 +23,6 @@ var init = function() {
     // load storage here to init isSelectCheckOn I guess
 }();
 
-/**
- * response: a response object from background.js
- *     containing what to do in this (chrome) tab
- */
-function popup(preview) {
-    var tooltip = getTooltip();
-    tooltip.find(".ct_title").text(
-            (preview.title)? preview.title : "");
-    tooltip.find(".ct_desc").html(
-            (preview.desc)? preview.desc : "");
-    tooltip.find(".ct_more").html(
-            (preview.moreurl)? "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>": "");
-    tooltip.appendTo("html");
-    var xy = calTooltipXY();
-    tooltip.css("left",xy[0]+"px");
-    tooltip.css("top",xy[1]+"px");
-
-    function calTooltipXY() {
-        var clientRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
-        if ( clientRect ) {
-            var x = clientRect.left+window.pageXOffset;
-            var y = clientRect.bottom+window.pageYOffset+2;
-            return [x,y];
-        }
-    }
-}
 chrome.extension.onMessage.addListener(
     function(message,sender,callback) {
         switch ( message.message ) {
@@ -103,6 +77,33 @@ function createTooltip() {
 function getTooltip () {
     if ( ! tooltipNode ) tooltipNode = createTooltip();
     return tooltipNode;
+}
+
+/**
+ * preview: a response object from background.js
+ *     containing what to do in this (chrome) tab
+ */
+function popup(preview) {
+    var tooltip = getTooltip();
+    tooltip.find(".ct_title").text(
+            (preview.title)? preview.title : "");
+    tooltip.find(".ct_desc").html(
+            (preview.desc)? preview.desc : "");
+    tooltip.find(".ct_more").html(
+            (preview.moreurl)? "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>": "");
+    tooltip.appendTo("html");
+    var xy = calTooltipXY();
+    tooltip.css("left",xy[0]+"px");
+    tooltip.css("top",xy[1]+"px");
+
+    function calTooltipXY() {
+        var clientRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+        if ( clientRect ) {
+            var x = clientRect.left+window.pageXOffset;
+            var y = clientRect.bottom+window.pageYOffset+2;
+            return [x,y];
+        }
+    }
 }
 
 function arrayContains(a, obj) {
