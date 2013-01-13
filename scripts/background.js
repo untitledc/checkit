@@ -49,7 +49,7 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, tabid) {
                         previewParams.desc = "查無此字"; //XXX i18n
                     }
                     chrome.tabs.sendMessage(tabid,
-                            {"action":action, "preview":previewParams});
+                            {"message":"popup", "preview":previewParams});
                     break;
             }
         }

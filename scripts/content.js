@@ -27,22 +27,18 @@ var init = function() {
  * response: a response object from background.js
  *     containing what to do in this (chrome) tab
  */
-function handleSelection(response) {
-    var action = response.action;
-    if ( action == "preview" ) {
-        var preview = response.preview;
-        var tooltip = getTooltip();
-        tooltip.find(".ct_title").text(
-                (preview.title)? preview.title : "");
-        tooltip.find(".ct_desc").html(
-                (preview.desc)? preview.desc : "");
-        tooltip.find(".ct_more").html(
-                (preview.moreurl)? "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>": "");
-        tooltip.appendTo("html");
-        var xy = calTooltipXY();
-        tooltip.css("left",xy[0]+"px");
-        tooltip.css("top",xy[1]+"px");
-    }
+function popup(preview) {
+    var tooltip = getTooltip();
+    tooltip.find(".ct_title").text(
+            (preview.title)? preview.title : "");
+    tooltip.find(".ct_desc").html(
+            (preview.desc)? preview.desc : "");
+    tooltip.find(".ct_more").html(
+            (preview.moreurl)? "<a target='_blank' href='" + preview.moreurl + "'>" + preview.moretxt + "</a>": "");
+    tooltip.appendTo("html");
+    var xy = calTooltipXY();
+    tooltip.css("left",xy[0]+"px");
+    tooltip.css("top",xy[1]+"px");
 
     function calTooltipXY() {
         var clientRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
@@ -55,7 +51,11 @@ function handleSelection(response) {
 }
 chrome.extension.onMessage.addListener(
     function(message,sender,callback) {
-        handleSelection(message);
+        switch ( message.message ) {
+            case "popup":
+                popup(message.preview);
+                break;
+        }
     }
 );
 
