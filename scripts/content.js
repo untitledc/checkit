@@ -29,9 +29,22 @@ chrome.extension.onMessage.addListener(
             case "popup":
                 popup(message.preview);
                 break;
+            case "switch":
+                handleSwitch(message, callback);
+                break;
         }
     }
 );
+
+function handleSwitch(message, callback) {
+    switch ( message.action ) {
+        case "get":
+            callback(isSelectCheckOn);
+            break;
+        case "set":
+            isSelectCheckOn = message.value;
+    }
+}
 
 window.onmouseup = function(e) {
     if ( isSelectCheckOn && keyDownCode == 67 ) {
