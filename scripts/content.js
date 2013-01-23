@@ -23,13 +23,21 @@ var init = function() {
     // load storage here to init isSelectCheckOn I guess
 }();
 
+function selectionCallback(response) {
+    switch ( response.message ) {
+        case "popup":
+            popup(response.preview);
+            break;
+    }
+}
+
 chrome.extension.onMessage.addListener(
     function(message,sender,callback) {
         switch ( message.message ) {
             case "popup":
                 popup(message.preview);
                 break;
-            case "switch":
+            case "switch": //applicable for all iframes
                 handleSwitch(message, callback);
                 break;
         }
@@ -55,7 +63,7 @@ window.onmouseup = function(e) {
                 "url": window.location.href,
                 "query": str,
                 "keycode": keyDownCode
-            });
+            }, selectionCallback);
         }
     }
 }

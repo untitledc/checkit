@@ -2,7 +2,8 @@ chrome.extension.onMessage.addListener(
     function(message, sender, callback) {
         switch ( message.message ) {
             case "select":
-                handleSelection(message, sender.tab.id);
+                handleSelection(message, callback);
+                return true;
                 break;
         }
     }
@@ -14,7 +15,7 @@ function newTab(url) {
     });
 }
 
-function handleSelection(message, tabid) {
+function handleSelection(message, callback) {
     // I should do some logic here
     // backend, backendUrl and action will be determined by
     // options, keypressed, url (context) ...
@@ -24,7 +25,7 @@ function handleSelection(message, tabid) {
     var action = "preview";
 
     $.get(backendUrl, function(html, textStatus) {
-            handleBEOutput(html,textStatus,backendUrl,backend,action,tabid);
+            handleBEOutput(html,textStatus,backendUrl,backend,action,callback);
         });
 }
 
@@ -35,7 +36,7 @@ function handleSelection(message, tabid) {
  * tabid: the (chrome) tab id from which the request was fired.
  *     background will send back processed BE output for preview.
  */
-function handleBEOutput(html, textStatus, backendUrl, backend, action, tabid) {
+function handleBEOutput(html, textStatus, backendUrl, backend, action, callback) {
     if ( textStatus == "success" ) {
         if ( action == "preview" ) {
             var previewParams = {};
@@ -48,8 +49,7 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, tabid) {
                     } else {
                         previewParams.desc = "查無此字"; //XXX i18n
                     }
-                    chrome.tabs.sendMessage(tabid,
-                            {"message":"popup", "preview":previewParams});
+                    callback({"message":"popup", "preview":previewParams});
                     break;
             }
         }
