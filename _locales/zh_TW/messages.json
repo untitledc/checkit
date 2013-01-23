@@ -1,0 +1,15 @@
+{
+    "ext_desc": {
+        "message": "快速提供字詞相關資訊",
+        "description": "Description of this extension."
+    },
+    "more_explanation": {
+        "message": "詳細解釋...",
+        "description": "The text of the link to the webpage. 'More explanation', currently used in dictionary."
+    },
+    "word_not_found": {
+        "message": "(查無此字)",
+        "description": "Hint 'cannot find the word'.  Currently used in dictionary."
+    }
+    
+}

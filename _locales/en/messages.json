@@ -1,0 +1,14 @@
+{
+    "ext_desc": {
+        "message": "Multi-purpose word look-up addon.",
+        "description": "Description of this extension."
+    },
+    "more_explanation": {
+        "message": "more...",
+        "description": "The text of the link to the webpage. 'More explanation', currently used in dictionary."
+    },
+    "word_not_found": {
+        "message": "(Word not found)",
+        "description": "Hint 'cannot find the word'.  Currently used in dictionary."
+    }
+}
