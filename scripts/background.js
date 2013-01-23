@@ -45,9 +45,9 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, callback)
                     previewParams = ydictPreviewParser(html);
                     if ( previewParams.found ) {
                         previewParams.moreurl = backendUrl;
-                        previewParams.moretxt = "詳細解釋..."; //XXX i18n
+                        previewParams.moretxt = chrome.i18n.getMessage("more_explanation");
                     } else {
-                        previewParams.desc = "查無此字"; //XXX i18n
+                        previewParams.desc = chrome.i18n.getMessage("word_not_found");
                     }
                     callback({"message":"popup", "preview":previewParams});
                     break;

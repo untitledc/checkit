@@ -1,14 +1,15 @@
 {
     "name": "Check it!",
-    "version": "0.1.1",
+    "version": "0.8.0",
     "manifest_version": 2,
 
-    "description": "Multi-purpose word lookup addon",
+    "description": "__MSG_ext_desc__",
     "icons": {
         "16": "resources/images/icon16.ico",
         "48": "resources/images/icon48.ico",
         "128": "resources/images/icon128.ico"
     },
+    "default_locale": "en",
 
     "browser_action": {
         "default_icon": {"19": "resources/images/icon19.png"},
