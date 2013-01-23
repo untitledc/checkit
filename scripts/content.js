@@ -47,7 +47,7 @@ function handleSwitch(message, callback) {
 }
 
 window.onmouseup = function(e) {
-    if ( isSelectCheckOn && keyDownCode == 67 ) {
+    if ( isSelectCheckOn ) {
         var str = window.getSelection().toString();
         if ( str ) {
             chrome.extension.sendMessage({
