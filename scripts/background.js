@@ -20,7 +20,7 @@ function handleSelection(message, callback) {
     // backend, backendUrl and action will be determined by
     // options, keypressed, url (context) ...
     // for now let me slack a bit
-    var backendUrl = "http://tw.dictionary.search.yahoo.com/search?p="+message.query;
+    var backendUrl = "http://tw.dictionary.search.yahoo.com/search?p="+encodeURIComponent(message.query);
     var backend = "dict.s.y.c";
     var action = "preview";
 
