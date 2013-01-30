@@ -1,6 +1,6 @@
 {
     "name": "Check it!",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "manifest_version": 2,
 
     "description": "__MSG_ext_desc__",

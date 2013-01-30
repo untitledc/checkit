@@ -1,3 +1,6 @@
+/** backend enum */
+var BACKEND_DICT = "dict.s.y.c";
+
 chrome.extension.onMessage.addListener(
     function(message, sender, callback) {
         switch ( message.message ) {
@@ -20,13 +23,20 @@ function handleSelection(message, callback) {
     // backend, backendUrl and action will be determined by
     // options, keypressed, url (context) ...
     // for now let me slack a bit
-    var backendUrl = "http://tw.dictionary.search.yahoo.com/search?p="+encodeURIComponent(message.query);
-    var backend = "dict.s.y.c";
+    var backendUrl;
+    var backend = BACKEND_DICT;
     var action = "preview";
 
-    $.get(backendUrl, function(html, textStatus) {
-            handleBEOutput(html,textStatus,backendUrl,backend,action,callback);
-        });
+    switch (backend) {
+        case BACKEND_DICT:
+            if ( message.query.length < 128 ) {
+                backendUrl = "http://tw.dictionary.search.yahoo.com/search?p="+encodeURIComponent(message.query);
+                $.get(backendUrl, function(html, textStatus) {
+                        handleBEOutput(html,textStatus,backendUrl,backend,action,callback);
+                    });
+            }
+            break;
+    }
 }
 
 /**
@@ -41,7 +51,7 @@ function handleBEOutput(html, textStatus, backendUrl, backend, action, callback)
         if ( action == "preview" ) {
             var previewParams = {};
             switch (backend) {
-                case "dict.s.y.c":
+                case BACKEND_DICT:
                     previewParams = ydictPreviewParser(html);
                     if ( previewParams.found ) {
                         previewParams.moreurl = backendUrl;
